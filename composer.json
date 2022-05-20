@@ -15,14 +15,13 @@
     ],
     "require": {
         "php": "^7.3 | ^8.0",
-        "behat/gherkin": "^4.9",
-        "mileschou/codegener": "^1.5"
+        "behat/gherkin": "^4.7"
     },
     "require-dev": {
-        "illuminate/filesystem": "^9.13",
+        "illuminate/filesystem": "^8 | ^9 ",
         "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^3.6",
-        "symfony/var-dumper": "^6.0"
+        "symfony/var-dumper": "^5 | ^6"
     },
     "autoload": {
         "psr-4": {
