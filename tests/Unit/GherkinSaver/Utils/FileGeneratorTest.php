@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\GherkinSaver;
+namespace Tests\Unit\GherkinSaver\Utils;
 
 use Behat\Gherkin\Gherkin as GherkinParser;
 use Behat\Gherkin\Keywords\ArrayKeywords;
@@ -12,9 +12,10 @@ use Behat\Gherkin\Node\FeatureNode;
 use Behat\Gherkin\Parser;
 use Illuminate\Filesystem\Filesystem;
 use MilesChou\Behat\Extension\GherkinSaver\GherkinFile;
+use MilesChou\Behat\Extension\GherkinSaver\Utils\FileGenerator;
 use Tests\TestCase;
 
-class GherkinFileTest extends TestCase
+class FileGeneratorTest extends TestCase
 {
     /**
      * @var GherkinParser
@@ -26,20 +27,13 @@ class GherkinFileTest extends TestCase
      */
     private $filesystem;
 
-    /**
-     * @var GherkinFile
-     */
-    private $target;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->target = new GherkinFile();
-
         $this->filesystem = new Filesystem();
 
-        $i18n = include dirname(__DIR__, 3) . '/vendor/behat/gherkin/i18n.php';
+        $i18n = include dirname(__DIR__, 4) . '/vendor/behat/gherkin/i18n.php';
 
         $this->gherkin = new GherkinParser();
         $this->gherkin->addLoader(new GherkinFileLoader(new Parser(new Lexer(new ArrayKeywords($i18n)))));
@@ -49,7 +43,6 @@ class GherkinFileTest extends TestCase
     {
         $this->gherkin = null;
         $this->filesystem = null;
-        $this->target = null;
 
         parent::tearDown();
     }
@@ -99,7 +92,7 @@ class GherkinFileTest extends TestCase
     {
         $this->assertSame(
             $this->filesystem->get($this->buildPath($file)),
-            $this->target->generate($this->loadFeature($file))
+            FileGenerator::generate($this->loadFeature($file))
         );
     }
 }

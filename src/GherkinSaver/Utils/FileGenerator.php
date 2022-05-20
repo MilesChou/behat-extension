@@ -12,7 +12,7 @@ use Behat\Gherkin\Node\ScenarioInterface;
 use Behat\Gherkin\Node\StepNode;
 use Behat\Gherkin\Node\TableNode;
 
-class Generator
+class FileGenerator
 {
     public static $indent = 2;
 
