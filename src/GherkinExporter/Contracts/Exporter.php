@@ -1,10 +1,10 @@
 <?php
 
-namespace MilesChou\Behat\Extension\GherkinSaver\Contracts;
+namespace MilesChou\Behat\Extension\GherkinExporter\Contracts;
 
 use Behat\Gherkin\Node\FeatureNode;
 
-interface GherkinSaver
+interface Exporter
 {
     /**
      * Save gherkin into file or remote storage

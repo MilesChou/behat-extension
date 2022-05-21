@@ -1,6 +1,6 @@
 <?php
 
-namespace MilesChou\Behat\Extension\GherkinSaver\Utils;
+namespace MilesChou\Behat\Extension\GherkinExporter\Utils;
 
 use Behat\Gherkin\Node\ArgumentInterface;
 use Behat\Gherkin\Node\BackgroundNode;

@@ -11,8 +11,8 @@ use Behat\Gherkin\Loader\GherkinFileLoader;
 use Behat\Gherkin\Node\FeatureNode;
 use Behat\Gherkin\Parser;
 use Illuminate\Filesystem\Filesystem;
-use MilesChou\Behat\Extension\GherkinSaver\GherkinFile;
-use MilesChou\Behat\Extension\GherkinSaver\Utils\FileGenerator;
+use MilesChou\Behat\Extension\GherkinExporter\GherkinFile;
+use MilesChou\Behat\Extension\GherkinExporter\Utils\FileGenerator;
 use Tests\TestCase;
 
 class FileGeneratorTest extends TestCase
@@ -94,5 +94,20 @@ class FileGeneratorTest extends TestCase
             $this->filesystem->get($this->buildPath($file)),
             FileGenerator::generate($this->loadFeature($file))
         );
+    }
+
+    /**
+     * @test
+     */
+    public function some(): void
+    {
+        $expected = <<<GHERKIN
+Feature: Some
+
+GHERKIN;
+
+        $object = new FeatureNode('Some', null, [], null, [], 'Feature', 'en', null, 0);
+
+        $this->assertSame($expected, FileGenerator::generate($object));
     }
 }
